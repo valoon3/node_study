@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>GIF 채팅방</title>
+</head>
+<body>
+    <div>F12 를 눌러 console 탭과 network 탭을 확인하세요</div>
+    <script>
+        // webSocket 생성자에 연결할 주소를 넣고 webSocket 객체를 생성합니다.
+        // 프로토콜이 ws이다.
+        // 백엔드 뿐만 아니라 프론트엔드도 이벤트 기반으로 동작한다.
+        const webSocket = new WebSocket("ws://localhost:8080");
+        webSocket.onopen = function() {
+            console.log('서버와 웹소켓 연결 성공!');
+        };
+        webSocket.onmessage = function(event) {
+            console.log(event.data);
+            webSocket.send('클라이언트에서 서버로 답장을 보냅니다.');
+        }
+    </script>
+</body>
+</html>
