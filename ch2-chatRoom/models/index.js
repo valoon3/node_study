@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { Sequelize } = require('sequelize');
 const User = require('./user');
 const Good = require('./good');
 const Auction = require('./auction');
@@ -7,16 +7,23 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config.json')[env];
 const db = {};
 
+// try {
+//     sequelize.authenticate();
+//     console.log('Connection has been established sucessfully');
+// } catch(err) {
+//     console.error('Unable to connect to the database', err);
+// }
+
 const sequelize = new Sequelize(
     config.database, config.username, config.password, config,
 );
 
 db.sequelize = sequelize;
-db.User = User;
+db.user = require('./user')(sequelize, Sequelize);
 db.Good = Good;
 db.Auction = Auction;
 
-User.init(sequelize);
+
 Good.init(sequelize);
 Auction.init(sequelize);
 
