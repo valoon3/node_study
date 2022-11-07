@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const User = require('./user');
+const user = require('./user');
 const Good = require('./good');
 const Auction = require('./auction');
 
@@ -27,7 +27,7 @@ db.Auction = Auction;
 Good.init(sequelize);
 Auction.init(sequelize);
 
-User.associate(db);
+user.associate(db);
 Good.associate(db);
 Auction.associate(db);
 

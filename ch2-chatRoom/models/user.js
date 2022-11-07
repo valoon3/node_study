@@ -30,9 +30,9 @@ module.exports = (sequelize, Sequelize) =>  {
         collate: 'utf8_general_ci',
     });
 
-     
-
-
+     user.associate = function(db) {
+         user.hasMany(db.Auction);
+     }
 
      return user;
 }
