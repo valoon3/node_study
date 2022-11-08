@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) =>  {
         email: {
             type: Sequelize.STRING(40),
             allowNull: false,
-            unique: ture,
+            unique: true,
         },
         nick: {
             type: Sequelize.STRING(15),
