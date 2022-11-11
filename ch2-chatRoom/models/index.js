@@ -20,10 +20,15 @@ db.user = require('./user')(sequelize, Sequelize);
 db.Good = require('./good')(sequelize, Sequelize);
 db.Auction = require('./auction')(sequelize, Sequelize);
 
+db.user.init(sequelize);
+db.Good.init(sequelize);
+db.Auction.init(sequelize);
 
 db.user.associate(db);
 db.Good.associate(db);
 db.Auction.associate(db);
+
+
 
 console.log(db);
 
