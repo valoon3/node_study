@@ -26,7 +26,7 @@ module.exports = (sequelize, Sequelize) =>  {
         paranid: true,
         modelName: 'User',
         tableName: 'users',
-        charset: 'utf-8',
+        charset: 'utf8',
         collate: 'utf8_general_ci',
     });
 
