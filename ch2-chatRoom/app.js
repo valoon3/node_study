@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const { sequelize } = require('./models/index');
 const nunjuncks = require('nunjucks');
+const passportConfig = require('./passport');
 
 const app = express();
 
