@@ -10,6 +10,7 @@ const passport = require('passport');
 const app = express();
 const passportConfig = require('./passport/index');
 const authRouter = require('./routes/auth');
+const indexRouter = require('./routes/index');
 
 passportConfig();
 app.set('port', process.env.PORT || 3000);
@@ -45,8 +46,8 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use('/', indexRouter);
-// app.use('')
+app.use('/', indexRouter);
+app.use('/auth', authRouter);
 
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기 중');
