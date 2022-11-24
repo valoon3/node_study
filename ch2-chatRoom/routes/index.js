@@ -1,6 +1,12 @@
 import express from "express";
 import {isLoggedIn, isNotLoggedIn} from "./middlewares";
 
+const fs = require('fs');
+const multer = require('multer');
+const path = require('path');
+
+const {Good, Auction, User } = require('../models');
+
 
 const router = express.Router();
 
@@ -24,6 +30,10 @@ router.get('/', async (req, res, next) => {
 
 router.get('/join', isNotLoggedIn, (req, res) => {
     res.render('join', { title: '회원가입 - NodeAution', });
+});
+
+router.get('/good', isLoggedIn, (req, res) => {
+    res.render('good', { title: '상품 등록 - nodeAuction' });
 });
 
 try {
