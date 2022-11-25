@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 
 const app = express();
-const passportConfig = require('./passport/index');
+// const passportConfig = require('./passport/index');
 const authRouter = require('./routes/auth');
 const indexRouter = require('./routes/index');
 

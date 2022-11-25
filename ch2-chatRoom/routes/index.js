@@ -1,5 +1,5 @@
-import express from "express";
-import {isLoggedIn, isNotLoggedIn} from "./middlewares";
+const express = require('express');
+const {isLoggedIn, isNotLoggedIn} = require("./middlewares");
 
 const fs = require('fs');
 const multer = require('multer');
