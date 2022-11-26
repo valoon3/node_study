@@ -18,6 +18,7 @@ router.use((req, res, next) => {
 router.get('/', async (req, res, next) => {
     try {
         const goods = await Good.findAll({ where : { SoldId: null} });
+
         res.render('main', {
             title: 'NodeAuction',
             goods,
@@ -28,11 +29,11 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-router.get('/join', isNotLoggedIn, (req, res) => {
+router.get('/join', isNotLoggedIn, (req, res, next) => {
     res.render('join', { title: '회원가입 - NodeAution', });
 });
 
-router.get('/good', isLoggedIn, (req, res) => {
+router.get('/good', isLoggedIn, (req, res, next) => {
     res.render('good', { title: '상품 등록 - nodeAuction' });
 });
 
