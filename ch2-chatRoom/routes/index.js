@@ -11,6 +11,7 @@ const {Good, Auction, User } = require('../models');
 const router = express.Router();
 
 router.use((req, res, next) => {
+    console.log('path : /, 이거는 받는다.');
     res.locals.user = req.user;
     next();
 });

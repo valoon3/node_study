@@ -48,8 +48,8 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', indexRouter);
-app.use('/auth', authRouter);
+app.use(indexRouter);
+// app.use('/auth', authRouter);
 
 // 에러처리
 app.use((req, res, next) => {
