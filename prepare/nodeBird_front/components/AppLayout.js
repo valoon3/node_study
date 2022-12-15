@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import Link from "next/link";
+import {Menu, Input, Row, Col} from "antd";
 
 const AppLayout = ({ children }) => {
+    const menuItems = [
+        {label: (<Link href="/">노드버드</Link>)},
+        {label: (<Link href="/profile">프로필</Link>)},
+        {label: (<Input.Search placeholder="input search text" /*onSearch={onSearch}*/ enterButton style={{verticalAlign: "middle"}} />)},
+        {label: (<Link href="/signup">회원가입</Link>)}
+    ];
+
     return (
         <div>
-            <div>
-                <Link href="/">노드버드</Link>
-                <Link href="/profile">프로필</Link>
-                <Link href="/signup">회원가입</Link>
-            </div>
+            <Menu mode="horizontal" items={menuItems} />
             { children }
         </div>
     );
