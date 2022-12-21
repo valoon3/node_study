@@ -9,6 +9,7 @@ const UserProfile = () => {
     const dispatch = useDispatch();
 
     const onLogOut = useCallback(() => {
+        console.log('onLogOut');
         dispatch(logoutAction());
     }, []);
 
