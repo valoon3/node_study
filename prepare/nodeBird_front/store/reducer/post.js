@@ -26,7 +26,7 @@ export const initialState = {
                 content: '얼른 사고싶어요~',
             }],
         }],
-    imagePath: [],
+    imagePaths: [],
     postAdded: false,
 };
 
