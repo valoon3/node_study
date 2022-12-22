@@ -39,15 +39,15 @@ const LoginForm = () => {
                 <div>
                     <label htmlFor="user-id">아이디</label>
                     <br/>
-                    <Input name="user-id" value={id} onChange={onChangeId} require />
+                    <Input name="user-id" value={id} onChange={onChangeId} require="true" />
                 </div>
                 <div>
-                    <label htmlFor="user-password">아이디</label>
+                    <label htmlFor="user-password">비밀번호</label>
                     <br/>
-                    <Input name="user-password" type="password" value={password} onChange={onChangeId} require />
+                    <Input name="user-password" type="password" value={password} onChange={onChangePassword} require="true" />
                 </div>
                 <ButtonWrapper>
-                    <Button type="primary" htmlType="submit" loading={false} onChange={onChangePassword} >로그인</Button>
+                    <Button type="primary" htmlType="submit" loading={false} onChange={onSubmitForm} >로그인</Button>
                     <Link href="/signup"><Button>회원가입</Button></Link>
                 </ButtonWrapper>
             </FormWrapper>
