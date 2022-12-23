@@ -12,10 +12,6 @@ const loggerMiddleware = ({ dispatch, getState }) => (next) => (action) => {
     return next(action);
 }
 
-const testMiddleware = ({dispatch, getState}) => {
-
-}
-
 const configureStore = () => {
     const middlewares = [thunkMiddleware, loggerMiddleware]; // thunkMiddleware는 함수로 들어온 입력도 처리 가능하도록 만들어줌
     // redux 개발자 도구 사용을 위한 설정
