@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import {Button, Form, Input} from "antd";
 import Link from "next/link";
 import styled from "styled-components";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import {loginRequestAction} from '../store/reducer/user'
 
@@ -16,6 +16,7 @@ const FormWrapper = styled(Form)`
 
 const LoginForm = () => {
     const dispatch = useDispatch();
+    const { isLoggingIn } = useSelector((state) => state.user);
 
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
@@ -47,7 +48,7 @@ const LoginForm = () => {
                     <Input name="user-password" type="password" value={password} onChange={onChangePassword} require="true" />
                 </div>
                 <ButtonWrapper>
-                    <Button type="primary" htmlType="submit" loading={false} onChange={onSubmitForm} >로그인</Button>
+                    <Button type="primary" htmlType="submit" loading={isLoggingIn} onChange={onSubmitForm} >로그인</Button>
                     <Link href="/signup"><Button>회원가입</Button></Link>
                 </ButtonWrapper>
             </FormWrapper>

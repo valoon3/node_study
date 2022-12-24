@@ -4,15 +4,6 @@ import user from './user';
 import post from './post';
 import {combineReducers} from "redux";
 
-const initialState = {
-    user : {
-
-    },
-    post : {
-
-    }
-}
-
 const index = (state = {}, action) => {
     switch (action.type) {
         case HYDRATE:
