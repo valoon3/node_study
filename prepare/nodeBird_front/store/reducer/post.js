@@ -95,8 +95,41 @@ const reducer = (state = initialState, action) => {
         case ADD_POST_REQUEST:
             return {
                 ...state,
+                addPostLoading: true,
+                addPostDone: false,
+                addPostError: null,
+            };
+        case ADD_POST_SUCCESS:
+            return {
+                ...state,
                 mainPosts: [dummyPost, ...state.mainPosts],
-                postAdded: true,
+                addPostLoading: false,
+                addPostDone: true,
+            };
+        case ADD_POST_FAILURE:
+            return {
+                ...state,
+                addCommentLoading: false,
+                addCommentError: action.error,
+            };
+        case ADD_COMMENT_REQUEST:
+            return {
+                ...state,
+                addCommentLoading: true,
+                addCommentDone: false,
+                addCommentError: null,
+            };
+        case ADD_COMMENT_SUCCESS:
+            return {
+                ...state,
+                addCommentLoading: false,
+                addCommentDone: true,
+            };
+        case ADD_COMMENT_FAILURE:
+            return {
+                ...state,
+                addCommentLoading: false,
+                addCommentError: action.error,
             };
         default:
             return state;

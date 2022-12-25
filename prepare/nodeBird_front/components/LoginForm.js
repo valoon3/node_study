@@ -16,13 +16,13 @@ const FormWrapper = styled(Form)`
 
 const LoginForm = () => {
     const dispatch = useDispatch();
-    const { isLoggingIn } = useSelector((state) => state.user);
+    const { logInLoading } = useSelector((state) => state.user);
 
-    const [id, setId] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const onChangeId = useCallback((e) => {
-        setId(e.target.value);
+    const onChangeEmail = useCallback((e) => {
+        setEmail(e.target.value);
     }, []);
 
     const onChangePassword = useCallback((e) => {
@@ -30,17 +30,17 @@ const LoginForm = () => {
     }, []);
 
     const onSubmitForm = useCallback(() => {
-        console.log(id, password);
-        dispatch(loginRequestAction({ id, password }));
-    }, [id, password]);
+        console.log(email, password);
+        dispatch(loginRequestAction({ email, password }));
+    }, [email, password]);
 
     return (
         <>
             <FormWrapper onFinish={onSubmitForm}>
                 <div>
-                    <label htmlFor="user-id">아이디</label>
+                    <label htmlFor="user-email">이메일</label>
                     <br/>
-                    <Input name="user-id" value={id} onChange={onChangeId} require="true" />
+                    <Input name="user-email" value={email} onChange={onChangeEmail} require="true" />
                 </div>
                 <div>
                     <label htmlFor="user-password">비밀번호</label>
@@ -48,7 +48,7 @@ const LoginForm = () => {
                     <Input name="user-password" type="password" value={password} onChange={onChangePassword} require="true" />
                 </div>
                 <ButtonWrapper>
-                    <Button type="primary" htmlType="submit" loading={isLoggingIn} onChange={onSubmitForm} >로그인</Button>
+                    <Button type="primary" htmlType="submit" loading={logInLoading} onChange={onSubmitForm} >로그인</Button>
                     <Link href="/signup"><Button>회원가입</Button></Link>
                 </ButtonWrapper>
             </FormWrapper>
