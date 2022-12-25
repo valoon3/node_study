@@ -7,7 +7,7 @@ import {logoutRequestAction} from '../store/reducer/user'
 const UserProfile = () => {
 
     const dispatch = useDispatch();
-    const me = useSelector((state) => state.user.me);
+    const me = useSelector((state) => state.user?.me);
     const { logOutLoading } = useSelector((state) => state.user);
 
     const onLogOut = useCallback(() => {

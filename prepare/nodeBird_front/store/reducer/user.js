@@ -55,8 +55,8 @@ const dummyUser = (data) => ({
     ...data,
     nickname: '제로초',
     id: 1,
-    Posts: [],
-    Followings: [],
+    Posts: [{id: 1},],
+    Followings: [{ nickname: '부기초'}, { nickname: 'chango Lee'}, { nickname: 'neue zeal'},],
     Followers: [],
 })
 
@@ -117,6 +117,26 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 logInDone: false,
                 logOutError: action.error,
+            };
+        case CHANGE_NICKNAME_REQUEST:
+            return {
+                ...state,
+                changeNicknameLoading: true,
+                changeNicknameDone: false,
+                changeNicknameError: null,
+            };
+        case CHANGE_NICKNAME_SUCCESS:
+            console.log('log_out_success!!!')
+            return {
+                ...state,
+                changeNicknameLoading: false,
+                changeNicknameDone: false,
+            };
+        case CHANGE_NICKNAME_FAILURE:
+            return {
+                ...state,
+                changeNicknameDone: false,
+                changeNicknameError: action.error,
             };
         default:
             return state;

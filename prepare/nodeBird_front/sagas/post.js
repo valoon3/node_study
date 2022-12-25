@@ -51,10 +51,7 @@ function* addPost(action) {
         const id = shortId.generate();
         yield put({
             type: ADD_POST_SUCCESS,
-            data: {
-                id,
-                content: action.data,
-            },
+            data: action.data,
         });
         yield put({
             type: ADD_POST_TO_ME,
