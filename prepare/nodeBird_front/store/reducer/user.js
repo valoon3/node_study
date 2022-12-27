@@ -57,7 +57,7 @@ const dummyUser = (data) => ({
     id: 1,
     Posts: [{id: 1},],
     Followings: [{ nickname: '부기초'}, { nickname: 'chango Lee'}, { nickname: 'neue zeal'},],
-    Followers: [],
+    Followers: [{ nickname: '부기초'}, { nickname: 'chango Lee'}, { nickname: 'neue zeal'},],
 })
 
 // Action

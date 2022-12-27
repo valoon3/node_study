@@ -1,4 +1,5 @@
 import shortId from "shortid";
+import {ADD_POST_TO_ME, REMOVE_POST_OF_ME} from "./user";
 
 export const initialState = {
     mainPosts: [
@@ -22,12 +23,14 @@ export const initialState = {
             Comments: [{
                 id: shortId.generate(),
                 User: {
+                    id: shortId.generate(),
                     nickname: 'nero',
                 },
                 content: '우와 개정판이 나왔군요~',
             }, {
                 id: shortId.generate(),
                 User: {
+                    id: shortId.generate(),
                     nickname: 'hero',
                 },
                 content: '얼른 사고싶어요~',
@@ -84,8 +87,8 @@ export const addComment = (data) => ({
 });
 
 const dummyPost= (data) => ({
-    id: shortId.generate(),
-    content: data,
+    id: data.id,
+    content: data.content,
     User: {
         id: 1,
         nickname: '제로초',
@@ -119,6 +122,14 @@ const reducer = (state = initialState, action) => {
                 addPostLoading: false,
                 addPostDone: true,
             };
+        case ADD_POST_TO_ME:
+            return {
+                ...state,
+                me: {
+                    ...state.me,
+                    Posts: [{id: action.data}, ...state.me.Posts],
+                }
+            }
         case ADD_POST_FAILURE:
             return {
                 ...state,
@@ -150,6 +161,35 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 addCommentLoading: false,
                 addCommentError: action.error,
+            };
+        case REMOVE_POST_REQUEST:
+            return {
+                ...state,
+                removePostLoading: true,
+                removePostDone: false,
+                removePostError: null,
+            };
+        case REMOVE_POST_SUCCESS:
+            return {
+                ...state,
+                mainPosts: state.mainPosts.filter((v) => v.id !== action.data),
+                removePostLoading: false,
+                removePostDone: true,
+            };
+        case REMOVE_POST_FAILURE:
+            return {
+                ...state,
+                removePostLoading: true,
+                removePostDone: false,
+                removePostError: null,
+            };
+        case REMOVE_POST_OF_ME:
+            return {
+                ...state,
+                me: {
+                    ...state.me,
+                    Posts: state.me.Posts.filter((v) => v.id === action.data),
+                },
             };
         default:
             return state;
