@@ -1,13 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Head from "next/head";
 
 import AppLayout from "../components/AppLayout";
 import NicknameEditForm from "../components/profile/NicknameEditForm";
 import FollowList from "../components/profile/FollowList";
 import {useSelector} from "react-redux";
+import {Router} from "next/router";
 
 const Profile = () => {
     const {me} = useSelector((state) => state.user?.me);
+
+    useEffect(() => {
+        if(!(me && me.id)) {
+            Router.push('/');
+        }
+    }, [me && me.id]);
+
+    if(!me) {
+        return null;
+    }
 
     // // 더미 데이터
     // const followingList = [
