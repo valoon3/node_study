@@ -5,14 +5,15 @@ import AppLayout from "../components/AppLayout";
 import NicknameEditForm from "../components/profile/NicknameEditForm";
 import FollowList from "../components/profile/FollowList";
 import {useSelector} from "react-redux";
-import {Router} from "next/router";
+import {useRouter} from "next/router";
 
 const Profile = () => {
-    const {me} = useSelector((state) => state.user?.me);
+    const {me} = useSelector((state) => state.user);
+    const router = useRouter();
 
     useEffect(() => {
         if(!(me && me.id)) {
-            Router.push('/');
+            router.push('/');
         }
     }, [me && me.id]);
 
