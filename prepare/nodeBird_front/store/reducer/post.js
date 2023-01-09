@@ -53,6 +53,7 @@ export const initialState = {
     addCommentError: null,
 };
 
+// 인피니트 스크롤링
 export const generateDummyPost = (number) => Array(number).fill().map(() => ({
     id: shortId.generate(),
     User: {
@@ -60,7 +61,9 @@ export const generateDummyPost = (number) => Array(number).fill().map(() => ({
         nickname: faker.name.findName(),
     },
     content: faker.lorem.paragraph(),
-    Images: [{ src: faker.image.image(), }],
+    Images: [{
+        src: faker.image.image(),
+    }],
     Comments: [{
         User: {
             id: shortId.generate(),
@@ -69,6 +72,8 @@ export const generateDummyPost = (number) => Array(number).fill().map(() => ({
         content: faker.lorem.sentence(),
     }],
 }));
+
+// export const generateDummyPost = (number) => ;
 
 export const LOAD_POSTS_REQUEST = 'LOAD_POSTS_REQUEST';
 export const LOAD_POSTS_SUCCESS = 'LOAD_POSTS_SUCCESS';
@@ -122,6 +127,22 @@ const reducer = (state = initialState, action) => {
     return produce(state, (draft) => {
 
         switch(action.type) {
+            case LOAD_POSTS_REQUEST:
+                draft.loadPostsLoading = true;
+                draft.loadPostsDone = false;
+                draft.loadPostsError = null;
+                break;
+            case LOAD_POSTS_SUCCESS:
+                draft.loadPostsLoading = false;
+                draft.loadPostsDone = true;
+                draft.mainPosts = action.data.concat(draft.mainPosts);
+                draft.hasMorePosts = draft.mainPosts.length < 50;
+                break;
+            case LOAD_POSTS_FAILURE:
+                draft.loadPostsLoading = true;
+                draft.addPostDone = false;
+                draft.addPostError = null;
+                break;
             case ADD_POST_REQUEST:
                 draft.addPostLoading = true;
                 draft.addPostDone = false;
